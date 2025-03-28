@@ -72,9 +72,6 @@ Simply open `index.html` in a browser or serve with Live Server.
 
 ---
 
-## 📷 Screenshot
-![Chat UI]("C:\Users\harsh\OneDrive\Pictures\Screenshots\Screenshot 2025-03-28 111646.png")
-
 ---
 
 ## 🔗 Live Demo
