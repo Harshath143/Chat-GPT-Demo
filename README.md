@@ -125,7 +125,7 @@ Then open `http://127.0.0.1:5500` in your browser.
 ```sh
 git init
 git add .
-git commit -m "Deploy ChatGPT Clone"
+git commit -m "Deploy Chat-GPT-Demo"
 git push origin main
 ```
 
