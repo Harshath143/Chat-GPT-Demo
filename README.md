@@ -1,163 +1,92 @@
-# ChatGPT UI Clone - Web RAG System
+# ChatGPT Demo - Web RAG System
 
-## Introduction
-This project is a **ChatGPT UI Clone** that integrates with a **FastAPI backend** to provide **Retrieval-Augmented Generation (RAG)** capabilities. It allows users to interact with an **AI-powered chatbot** that can process text, extract information from documents, transcribe audio, and retrieve relevant content from the web. The system leverages **FAISS for vector search**, **Ollama for Llama 3-based AI responses**, and supports **multiple data sources** for contextual augmentation.
+## Overview
+This project is an AI-powered chatbot system that integrates **FastAPI** as the backend and a **ChatGPT-style UI** as the frontend. The system uses **Ollama with LLaMA 3**, **FAISS for vector search**, and **Vosk for speech-to-text processing**. It supports **document uploads**, **web scraping**, and **multilingual queries**.
 
-## Features
-- **FastAPI Backend** with endpoints for chat, file uploads, and web scraping.
-- **Frontend (HTML, CSS, JavaScript)** for an interactive ChatGPT-like UI.
-- **Vector Database (FAISS)** for efficient retrieval of past conversation context.
-- **LLM Integration** using Ollama and Llama 3 model for response generation.
-- **Document Processing** for PDFs, DOCX files, and WAV audio transcription.
-- **Web Scraping** to fetch relevant content from a given URL.
-- **Multilingual Support** via Google Translator API.
+![Project Screenshot](assets/screenshot.png)
 
 ---
 
-## System Requirements
-Ensure you have the following installed:
+## 🚀 Features
+✅ **Chat with AI**: Uses Ollama's LLaMA 3 model for intelligent responses.  
+✅ **Memory Storage**: Stores session-based memory using FAISS.  
+✅ **Web Scraping**: Retrieves context from URLs for improved responses.  
+✅ **Document Processing**: Extracts text from PDFs, DOCX, and transcribes WAV files.  
+✅ **Speech Recognition**: Converts speech to text using Vosk.  
+✅ **Multilingual Support**: Translates queries to English before processing.  
+✅ **FastAPI Backend**: Provides API endpoints for interaction.  
+✅ **Modern UI**: A ChatGPT-like frontend with a clean and user-friendly interface.  
 
-- **Python 3.8+**
-- **FastAPI**
-- **FAISS**
-- **Ollama** (with Llama 3 model installed)
-- **Vosk (for speech-to-text)**
-- **Sentence Transformers**
-- **Node.js & npm** (for frontend development)
+---
 
-### Install Ollama and Llama 3
-Ensure Ollama is installed on your system:
-```sh
-curl -fsSL https://ollama.ai/install.sh | sh
-```
-Download the **Llama 3 model**:
+## 🛠️ Tech Stack
+**Frontend:**  
+- HTML, CSS, JavaScript  
+- Fetch API for backend communication  
+
+**Backend:**  
+- FastAPI (Python)  
+- Ollama (LLaMA 3)  
+- FAISS for vector search  
+- Vosk for speech-to-text  
+- BeautifulSoup for web scraping  
+- Google Translate API for multilingual support  
+- PyMuPDF & python-docx for document parsing  
+
+---
+
+## 📌 Setup Guide
+### 🔧 1. Install Ollama & LLaMA 3
+Make sure **Ollama** is installed and the **LLaMA 3** model is available:
 ```sh
 ollama pull llama3
 ```
 
----
-
-## Backend Setup (FastAPI)
-
-### 1. Install Dependencies
+### 🔧 2. Clone the Repository
 ```sh
-pip install fastapi uvicorn faiss-cpu numpy ollama vosk requests beautifulsoup4 fitz googletrans newspaper3k sentence-transformers python-docx
+git clone https://github.com/Harshath143/Chat-GPT-Demo.git
+cd Chat-GPT-Demo
 ```
 
-### 2. Run the FastAPI Server
+### 🔧 3. Install Dependencies
+```sh
+pip install -r requirements.txt
+```
+
+### 🔧 4. Run FastAPI Backend
 ```sh
 uvicorn main:app --reload
 ```
-The server will start at: `http://127.0.0.1:8000`
 
-### 3. Backend Endpoints
-
-| Method | Endpoint | Description |
-|--------|------------|-------------|
-| **GET** | `/` | Returns a welcome message |
-| **POST** | `/chat/` | Generates AI responses with RAG support |
-| **POST** | `/upload/` | Uploads and processes files for retrieval |
-
-Example request to `/chat/`:
-```json
-{
-    "session_id": "user123",
-    "prompt": "What is AI?",
-    "language": "en"
-}
-```
+### 🔧 5. Start Frontend
+Simply open `index.html` in a browser or serve with Live Server.
 
 ---
 
-## Frontend Setup
-
-### 1. Project Structure
-```
-Chat-GPT-Demo/
-│── backend/
-│── frontend/
-│   ├── index.html
-│   ├── styles.css
-│   ├── script.js
-│── README.md
-│── Web_RAG.py (FastAPI backend)
-```
-
-### 2. Frontend (HTML, CSS, JavaScript)
-Ensure the frontend interacts with FastAPI via `fetch` requests.
-
-#### **HTML (index.html)**
-```html
-<input type="text" id="user-input" placeholder="Ask anything...">
-<button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
-<div id="chat-output"></div>
-```
-
-#### **JavaScript (script.js)**
-```js
-document.getElementById("send-btn").addEventListener("click", async () => {
-    const input = document.getElementById("user-input").value;
-    const response = await fetch("http://127.0.0.1:8000/chat/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            session_id: "user123",
-            prompt: input,
-            language: "en"
-        })
-    });
-    const data = await response.json();
-    document.getElementById("chat-output").innerHTML = data.response;
-});
-```
-
-### 3. Start a Local Server
-```sh
-cd frontend
-python -m http.server 5500  # Serves index.html
-```
-Then open `http://127.0.0.1:5500` in your browser.
+## 📡 API Endpoints
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Welcome message |
+| `/upload/` | POST | Uploads and processes files |
+| `/chat/` | POST | Chat with AI using LLaMA 3 |
 
 ---
 
-## Deployment
-### Deploy Backend with FastAPI on Render/Heroku
-```sh
-git init
-git add .
-git commit -m "Deploy Chat-GPT-Demo"
-git push origin main
-```
-
-### Deploy Frontend on GitHub Pages / Vercel
-- Host `index.html`, `styles.css`, `script.js` on GitHub.
-- Use **GitHub Pages** or **Vercel** for hosting.
+## 📷 Screenshot
+![Chat UI]("C:\Users\harsh\OneDrive\Pictures\Screenshots\Screenshot 2025-03-28 111646.png")
 
 ---
 
-## Troubleshooting
-- **CORS Errors?** Add CORS middleware in `main.py`:
-  ```python
-  from fastapi.middleware.cors import CORSMiddleware
-  app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
-  ```
-- **No AI Response?** Ensure `ollama` and `llama3` model are correctly installed.
-  ```sh
-  ollama run llama3 "Hello!"
-  ```
-- **FAISS Errors?** Ensure FAISS is installed:
-  ```sh
-  pip install faiss-cpu
-  ```
+## 🔗 Live Demo
+🚀 **Coming Soon!**
 
 ---
 
+## 🤝 Contributing
+Feel free to submit issues and pull requests!
 
-![Project Screenshot]("C:\Users\harsh\OneDrive\Pictures\Screenshots\Screenshot 2025-03-28 111646.png")
+---
 
-
-## Conclusion
-This project integrates **FastAPI, Ollama, FAISS, and a simple frontend** to create an interactive AI-powered chatbot. It supports **file uploads, web scraping, multilingual responses**, and **local memory storage** using FAISS.
-
-🚀 Feel free to contribute and improve the project! Happy coding! 🎉
+## 📝 License
+This project is licensed under MIT License.
 
