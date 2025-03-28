@@ -152,6 +152,10 @@ git push origin main
 
 ---
 
+
+![Project Screenshot]("C:\Users\harsh\OneDrive\Pictures\Screenshots\Screenshot 2025-03-28 111646.png")
+
+
 ## Conclusion
 This project integrates **FastAPI, Ollama, FAISS, and a simple frontend** to create an interactive AI-powered chatbot. It supports **file uploads, web scraping, multilingual responses**, and **local memory storage** using FAISS.
 
